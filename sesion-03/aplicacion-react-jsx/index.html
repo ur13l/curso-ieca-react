@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Aplicación React</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    const items = [];
+
+    const addItem = () => {
+      const text = document.getElementById("input").value;
+      items.push({
+        completed: false,
+        text: text,
+      });
+      root.render(<App />)
+    };
+
+    const changeStatus = (item) => {
+      item.completed = !item.completed;
+      root.render(<App />)
+    };
+
+    const deleteItem = (item) => {
+      const index = items.indexOf(item);
+      items.splice(index, 1);
+      root.render(<App />)
+    };
+
+    const ListItem = ({ item }) => {
+      return (
+        <li key={item.key}>
+          <input type="checkbox" checked={item.completed} onChange={() => changeStatus(item)} />
+          <span style={{ textDecoration: item.completed ? "line-through" : "none" }} >{item.text}</span>
+          <button onClick={() => deleteItem(item)}>Eliminar</button>
+        </li>
+      );
+    }
+
+    const List = ({ items }) => {
+      return (
+        <ul>
+          {items.map((item) => (
+            <ListItem item={item} />
+          ))}
+        </ul>
+      )
+    }
+
+    const Form = () => {
+      return (
+        <div>
+          <input type="text" id="input" placeholder="Nueva tarea" />
+          <button onClick={addItem}>Agregar</button>
+        </div>
+      )
+    }
+
+    const App = () => {
+      return (
+        <div>
+          <h1>Mi primera app con JSX</h1>
+          <Form />
+          <List items={items} />
+        </div>
+      )
+    }
+
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

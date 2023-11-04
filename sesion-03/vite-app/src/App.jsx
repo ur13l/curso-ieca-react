@@ -1,10 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [countByTwo, setCountByTwo] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  // useEffect sin dependencias, se ejecuta en cada renderizado
+  /*
+  useEffect(() => {
+    console.log(
+      `Renderizado con count = ${count} y countByTwo = ${countByTwo}`
+    );
+  });
+  */
+
+  // useEffect con arreglo vacío de dependencias, se ejecuta solo en el primer renderizado
+  /*
+  useEffect(() => {
+    console.log(
+      `Renderizado con count = ${count} y countByTwo = ${countByTwo}`
+    );
+  }, []); 
+  */
+
+  // useEffect con arreglo de dependencias, se ejecuta solo cuando cambia alguna de las dependencias
+  /*
+  useEffect(() => {
+    console.log(
+      `Renderizado con count = ${count} y countByTwo = ${countByTwo}`
+    );
+  }, [countByTwo]);
+  */
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds((seconds) => seconds + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -21,8 +58,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={() => setCountByTwo((count) => count + 2)}>
+          count by two is {countByTwo}
+        </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          <strong>Segundos transcurridos:</strong> {seconds}
         </p>
       </div>
       <p className="read-the-docs">
