@@ -31,7 +31,7 @@
 
 // const ages = [25, 18, 29, 23, 30, 35, 50, 19, 25, 31];
 
-// const maxAge = ages.reduce((prev, current) => {
+// const maxAge = ages.reduce((prev, w) => {
 //   if (current > prev) {
 //     return current;
 //   } else {
