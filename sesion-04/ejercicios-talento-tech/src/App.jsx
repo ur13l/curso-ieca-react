@@ -3,6 +3,7 @@ import HolaMundo from "./components/HelloWorld";
 import { useState } from "react";
 import Timer from "./components/Timer";
 import FocusInput from "./components/FocusInput";
+import ControlledComponent from "./components/ControlledComponent";
 
 function App() {
   const [routes, setRoutes] = useState([
@@ -20,6 +21,11 @@ function App() {
       path: "/focus",
       name: "Focus",
       component: <FocusInput />,
+    },
+    {
+      path: "/controlled",
+      name: "Controlled Component",
+      component: <ControlledComponent />,
     },
   ]);
 
