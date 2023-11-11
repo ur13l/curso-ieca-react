@@ -5,6 +5,7 @@ import Timer from "./components/Timer";
 import FocusInput from "./components/FocusInput";
 import ControlledComponent from "./components/ControlledComponent";
 import CounterWithHook from "./components/CounterWithHook";
+import TimerConsumer from "./components/TimerConsumer";
 
 function App() {
   const [routes, setRoutes] = useState([
@@ -31,7 +32,12 @@ function App() {
     {
       path: "/custom-hook",
       name: "Custom Hook",
-      component: <CounterWithHook />,
+      component: <CounterWithHook initialState={4} />,
+    },
+    {
+      path: "/timer-context",
+      name: "Timer with Context",
+      component: <TimerConsumer />,
     },
   ]);
 

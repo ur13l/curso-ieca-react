@@ -1,7 +1,7 @@
 import { useCounter } from "../hooks/useCounter";
 
-const CounterWithHook = () => {
-  const { counter, increment, decrement, reset } = useCounter(0);
+const CounterWithHook = ({ initialState }) => {
+  const { counter, increment, decrement, reset } = useCounter(initialState);
 
   return (
     <div className="p-4 flex flex-col items-center justify-center">
