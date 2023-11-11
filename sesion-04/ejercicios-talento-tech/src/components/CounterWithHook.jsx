@@ -1,7 +1,5 @@
 import { useCounter } from "../hooks/useCounter";
 
-useCounter(0);
-
 const CounterWithHook = () => {
   const { counter, increment, decrement, reset } = useCounter(0);
 
