@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import HolaMundo from "./components/HelloWorld";
 import { useState } from "react";
 import Timer from "./components/Timer";
+import FocusInput from "./components/FocusInput";
 
 function App() {
   const [routes, setRoutes] = useState([
@@ -14,6 +15,11 @@ function App() {
       path: "/timer",
       name: "Timer",
       component: <Timer />,
+    },
+    {
+      path: "/focus",
+      name: "Focus",
+      component: <FocusInput />,
     },
   ]);
 
