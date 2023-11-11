@@ -4,6 +4,7 @@ import { useState } from "react";
 import Timer from "./components/Timer";
 import FocusInput from "./components/FocusInput";
 import ControlledComponent from "./components/ControlledComponent";
+import CounterWithHook from "./components/CounterWithHook";
 
 function App() {
   const [routes, setRoutes] = useState([
@@ -26,6 +27,11 @@ function App() {
       path: "/controlled",
       name: "Controlled Component",
       component: <ControlledComponent />,
+    },
+    {
+      path: "/custom-hook",
+      name: "Custom Hook",
+      component: <CounterWithHook />,
     },
   ]);
 
