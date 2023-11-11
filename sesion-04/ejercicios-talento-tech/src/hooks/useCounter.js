@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
 export const useCounter = (initialValue = 0) => {
-  const [counter, setCounter] = useState(initialValue);
+  const [counter, setCounter] = useReducer((state, action) => {
+    switch (action) {
+      case "increment":
+        return state + 1;
+      case "decrement":
+        return state - 1;
+      case "reset":
+        return initialValue;
+      default:
+        return state;
+    }
+  }, initialValue);
 
   const increment = () => {
-    setCounter(counter + 1);
+    setCounter("increment");
   };
 
   const decrement = () => {
-    setCounter(counter - 1);
+    setCounter("decrement");
   };
 
   const reset = () => {
-    setCounter(initialValue);
+    setCounter("reset");
   };
 
   return {
