@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useFakestoreApi } from "../hooks/useFakestoreApi";
+import ProductItem from "../components/ProductItem";
+
 
 const Home = () => {
   const { data: products, loading, error, getProducts } = useFakestoreApi();
@@ -14,12 +16,9 @@ const Home = () => {
       {loading ? <span>Cargando...</span> : null}
       {error ? <span>Hubo un error</span> : null}
       {products ? (
-        <ul>
+        <ul className="grid grid-cols-5 gap-4 ">
           {products.map((product) => (
-            <li key={product.id}>
-              <img src={product.image} className="w-20" />
-              <span>{product.title}</span>
-            </li>
+            <ProductItem product={product} key={product.id}/>
           ))}
         </ul>
       ) : null}
