@@ -9,13 +9,18 @@ const NewProduct = () => {
     price: "",
     image: "",
   });
+
   const { loading, error, storeNewProduct } = useFakestoreApi();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
+    let newValue = e.target.value;
+    if (e.target.name === "price") {
+      newValue = parseFloat(e.target.value);
+    }
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]: newValue,
     });
   };
 
@@ -36,7 +41,6 @@ const NewProduct = () => {
           className="flex flex-col w-full mt-4 text-slate-900"
           onSubmit={handleSubmit}
         >
-          {/* Add form with fields title, description, price, image (as an input text link) */}
           <input
             type="text"
             placeholder="Título"

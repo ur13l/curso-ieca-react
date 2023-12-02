@@ -6,7 +6,6 @@ import {
   query,
 } from "firebase/firestore";
 import { useState } from "react";
-import { useReducer } from "react";
 import { db } from "../main";
 
 export const useFakestoreApi = () => {
@@ -16,10 +15,7 @@ export const useFakestoreApi = () => {
 
   const getProducts = async () => {
     try {
-      const res = await query(
-        collection(db, "products"),
-        orderBy("title", "asc")
-      );
+      const res = await query(collection(db, "products"));
 
       return onSnapshot(res, (querySnapshot) => {
         setData(
@@ -39,7 +35,8 @@ export const useFakestoreApi = () => {
       const res = await addDoc(collection(db, "products"), product);
       return res;
     } catch (error) {
-      throw new Error("Error al guardar producto");
+      setError("Error al guardar producto");
+      throw error;
     } finally {
       setLoading(false);
     }

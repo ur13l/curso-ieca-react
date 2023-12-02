@@ -4,13 +4,22 @@ import { useCartContext } from "../context/CartContext"
 
 const Cart = () => {
     const [total, setTotal] = useState(0);
-    const { state: {cart}} = useCartContext();
+    const {
+      state: { cart },
+    } = useCartContext();
+    p;
 
-    useEffect(()=>{
-        setTotal(
-            cart.reduce((acc, product) => acc + product.price, 0).toFixed(2)
-        )
-    }, [cart])
+    useEffect(() => {
+      const calculateTotal = () => {
+        const cartTotal = cart.reduce(
+          (acc, product) => acc + parseFloat(product.price),
+          0
+        );
+        setTotal(cartTotal.toFixed(2));
+      };
+
+      calculateTotal();
+    }, [cart]);
 
     return (
         <div className="flex flex-col gap-4">
