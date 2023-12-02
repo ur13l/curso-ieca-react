@@ -22,6 +22,7 @@ export default function Index() {
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Talento Tech - React</h1>
       <Link to="/second">Ir a la segunda página</Link>
+      <Link to="/posts/new">Crear nuevo post</Link>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
